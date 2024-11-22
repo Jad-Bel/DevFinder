@@ -4,6 +4,8 @@ const profileCard = document.querySelector('.card');
 const darkBtn = document.getElementById('dark-light');
 const whiteBtn = document.getElementById('white-light');
 
+let isDarkMode = false;
+
 searchButton.addEventListener('click', async () => {
     const username = searchInput.value.trim();
   
@@ -147,6 +149,7 @@ searchButton.addEventListener('click', async () => {
             </div>
         </div>`
     }
+}
 
 
 function darkTheme() {
@@ -258,3 +261,6 @@ function whiteBtn() {
         });
     });
 }
+
+darkTheme();
+whiteTheme();
