@@ -1,6 +1,8 @@
 const searchButton = document.querySelector('#searchButton');
 const searchInput = document.querySelector('input[type="search"]'); 
 const profileCard = document.querySelector('.card');
+const darkBtn = document.getElementById('dark-light');
+const whiteBtn = document.getElementById('white-light');
 
 searchButton.addEventListener('click', async () => {
     const username = searchInput.value.trim();
@@ -87,3 +89,25 @@ searchButton.addEventListener('click', async () => {
     </div>
     `; 
 }
+
+darkBtn.addEventListener('click', function () {
+    isDarkMode = true;
+
+    darkBtn.classList.add('hidden');
+    whiteBtn.classList.remove('hidden')
+    whiteBtn.classList.add('block');
+    
+    body.classList.remove('bg-gray-100');
+    body.classList.add('bg-gray-700', 'text-white');
+});
+
+whiteBtn.addEventListener('click', function () {
+    isDarkMode = false;
+
+    whiteBtn.classList.add('hidden');
+    darkBtn.classList.remove('hidden')
+    darkBtn.classList.add('block');
+
+    body.classList.remove('bg-gray-700', 'text-white');
+    body.classList.add('bg-gray-100');
+});
