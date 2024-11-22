@@ -103,11 +103,17 @@ function darkTheme() {
     });
 
     const dynamicCard = document.querySelector('.card1');
+    const titles = document.querySelectorAll('h1, h2, h4, span');
     
     if (dynamicCard) {
         dynamicCard.classList.remove('bg-white', 'shadow-gray-300');
         dynamicCard.classList.add('bg-slate-700');
        }
+
+    titles.forEach(function (title) {
+        title.classList.remove('text-gray-500', 'bg-slate-100');
+        title.classList.add('text-white');
+    })
 }
 
 
@@ -124,9 +130,15 @@ function whiteBtn() {
     });
 
     const dynamicCard = document.querySelector('.card1');
+    const titles = document.querySelectorAll('h1, h2, h4');
 
     if (dynamicCard) {
         dynamicCard.classList.remove('bg-gray-800', 'shadow-gray-600');
         dynamicCard.classList.add('bg-white');
     }
+
+    titles.forEach((title) => {
+        title.classList.remove('text-white');
+        title.classList.add('text-gray-500');
+    });
 }
