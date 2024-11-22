@@ -31,64 +31,122 @@ searchButton.addEventListener('click', async () => {
 
 
   function updateProfileCard(data) {
-    profileCard.innerHTML = `
-    <div class="card1 w-[90%] h-96 pt-5 bg-white shadow-xl shadow-gray-300 rounded-md">
-        <div class="flex pl-4">
-        <div class="img rounded-[50%] w-20 h-20" style="background-image: url('${data.avatar_url}'); background-size: cover; background-position: center;"></div>
-        <div class="ml-4 mt-2">
-            <h2 class="font-bold text-2xl text-gray-500">${data.name || 'Nom indisponible'}</h2>
-            <h3 class="text-blue-400 font-semibold"><a href="${data.html_url}">@${data.login}</a></h3>
-            <h4 class="text-gray-400 font-semibold md:hidden">Joined ${new Date(data.created_at).toLocaleDateString()}</h4>
-            <span class="bio text-gray-400 font-semibold hidden md:block">${data.bio || 'Pas de bio disponible.'}</span>
+
+    if (!isDarkMode) {
+        profileCard.innerHTML = `
+        <div class="card1 w-[90%] h-96 pt-5 bg-white shadow-xl shadow-gray-300 rounded-md">
+            <div class="flex pl-4">
+            <div class="img rounded-[50%] w-20 h-20" style="background-image: url('${data.avatar_url}'); background-size: cover; background-position: center;"></div>
+            <div class="ml-4 mt-2">
+                <h2 class="font-bold text-2xl text-gray-500">${data.name || 'Nom indisponible'}</h2>
+                <h3 class="text-blue-400 font-semibold"><a href="${data.html_url}">@${data.login}</a></h3>
+                <h4 class="text-gray-400 font-semibold md:hidden">Joined ${new Date(data.created_at).toLocaleDateString()}</h4>
+                <span class="bio text-gray-400 font-semibold hidden md:block">${data.bio || 'Pas de bio disponible.'}</span>
+            </div>
+            </div>
+            <div class="pt-4 pl-5">
+            <div class="md:pl-20">
+                <div class="stats-container flex justify-around md:justify-evenly w-[94%] md:w-[75%] bg-slate-100 rounded-md mt-5 mb-4 md:h-20 md:items-center">
+                <div>
+                    <h1 class="title text-gray-500 font-semibold">Repos</h1>
+                    <span class="stats flex justify-center items-center text-gray-500 ">${data.public_repos}</span>
+                </div>
+                <div>
+                    <h1 class="title text-gray-500 font-semibold">Followers</h1>
+                    <span class="stats flex justify-center items-center text-gray-500 ">${data.followers}</span>
+                </div>
+                <div>
+                    <h1 class="title text-gray-500 font-semibold">Following</h1>
+                    <span class="stats flex justify-center items-center text-gray-500 ">${data.following}</span>
+                </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-start gap-2 md:gap-10 pt-4 md:items-center">
+                <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
+                <div class="flex gap-5">
+                    <img src="../github-user-search-app-icons/icon-location.svg" alt="">
+                    <h2 class="text-blue-950">${data.location || 'Non disponible'}</h2>
+                </div>
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-website.svg" alt="">
+                    <h2 class=" text-gray-500 ">
+                    <a href="${data.blog || '#'}" target="_blank">${data.blog || 'Non disponible'}</a>
+                    </h2>
+                </div>
+                </div>
+                <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-twitter.svg" alt="">
+                    <h2 class=" text-gray-500 ">
+                    <a href="https://twitter.com/${data.twitter_username || ''}" target="_blank">${data.twitter_username || 'Non disponible'}</a>
+                    </h2>
+                </div>
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-company.svg" alt="">
+                    <h2 class=" text-gray-500 ">${data.company || 'Non disponible'}</h2>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
-        </div>
-        <div class="pt-4 pl-5">
-        <div class="md:pl-20">
-            <div class="stats-container flex justify-around md:justify-evenly w-[94%] md:w-[75%] bg-slate-100 rounded-md mt-5 mb-4 md:h-20 md:items-center">
-            <div>
-                <h1 class="title text-gray-500 font-semibold">Repos</h1>
-                <span class="stats flex justify-center items-center text-gray-500 ">${data.public_repos}</span>
-            </div>
-            <div>
-                <h1 class="title text-gray-500 font-semibold">Followers</h1>
-                <span class="stats flex justify-center items-center text-gray-500 ">${data.followers}</span>
-            </div>
-            <div>
-                <h1 class="title text-gray-500 font-semibold">Following</h1>
-                <span class="stats flex justify-center items-center text-gray-500 ">${data.following}</span>
+        `; 
+    } else {
+        profileCard.innerHTML = `<div class="card1 w-[90%] h-96 pt-5 bg-slate-700 shadow-xl rounded-md">
+            <div class="flex pl-4">
+            <div class="img rounded-[50%] w-20 h-20" style="background-image: url('${data.avatar_url}'); background-size: cover; background-position: center;"></div>
+            <div class="ml-4 mt-2">
+                <h2 class="font-bold text-2xl text-white">${data.name || 'Nom indisponible'}</h2>
+                <h3 class="text-blue-400 font-semibold">@${data.login}</h3>
+                <h4 class="text-white font-semibold md:hidden">Joined ${new Date(data.created_at).toLocaleDateString()}</h4>
+                <span class="bio text-white font-semibold hidden md:block">${data.bio || 'Pas de bio disponible.'}</span>
             </div>
             </div>
-        </div>
-        <div class="flex flex-col items-start gap-2 md:gap-10 pt-4 md:items-center">
-            <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
-            <div class="flex gap-5">
-                <img src="../github-user-search-app-icons/icon-location.svg" alt="">
-                <h2 class="text-blue-950">${data.location || 'Non disponible'}</h2>
+            <div class="pt-4 pl-5">
+            <div class="md:pl-20">
+                <div class="stats-container flex justify-around md:justify-evenly w-[94%] md:w-[75%] bg-slate-500 rounded-md mt-5 mb-4 md:h-20 md:items-center">
+                <div>
+                    <h1 class="title text-white font-semibold">Repos</h1>
+                    <span class="stats flex justify-center items-center text-white">${data.public_repos}</span>
+                </div>
+                <div>
+                    <h1 class="title text-white font-semibold">Followers</h1>
+                    <span class="stats flex justify-center items-center text-white">${data.followers}</span>
+                </div>
+                <div>
+                    <h1 class="title text-white font-semibold">Following</h1>
+                    <span class="stats flex justify-center items-center text-white">${data.following}</span>
+                </div>
+                </div>
             </div>
-            <div class="flex gap-4">
-                <img src="../github-user-search-app-icons/icon-website.svg" alt="">
-                <h2 class=" text-gray-500 ">
-                <a href="${data.blog || '#'}" target="_blank">${data.blog || 'Non disponible'}</a>
-                </h2>
+            <div class="flex flex-col items-start gap-2 md:gap-10 pt-4 md:items-center">
+                <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
+                <div class="flex gap-5">
+                    <img src="../github-user-search-app-icons/icon-location.svg" alt="">
+                    <h2 class="text-white">${data.location || 'Non disponible'}</h2>
+                </div>
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-website.svg" alt="">
+                    <h2 class="text-white">
+                    <a href="${data.blog || '#'}" target="_blank">${data.blog || 'Non disponible'}</a>
+                    </h2>
+                </div>
+                </div>
+                <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-twitter.svg" alt="">
+                    <h2 class="text-white">
+                    <a href="https://twitter.com/${data.twitter_username || ''}" target="_blank">${data.twitter_username || 'Non disponible'}</a>
+                    </h2>
+                </div>
+                <div class="flex gap-4">
+                    <img src="../github-user-search-app-icons/icon-company.svg" alt="">
+                    <h2 class="text-white">${data.company || 'Non disponible'}</h2>
+                </div>
+                </div>
             </div>
             </div>
-            <div class="flex flex-col gap-2 md:w-[80%] md:flex-row md:gap-44">
-            <div class="flex gap-4">
-                <img src="../github-user-search-app-icons/icon-twitter.svg" alt="">
-                <h2 class=" text-gray-500 ">
-                <a href="https://twitter.com/${data.twitter_username || ''}" target="_blank">${data.twitter_username || 'Non disponible'}</a>
-                </h2>
-            </div>
-            <div class="flex gap-4">
-                <img src="../github-user-search-app-icons/icon-company.svg" alt="">
-                <h2 class=" text-gray-500 ">${data.company || 'Non disponible'}</h2>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    `; 
-}
+        </div>`
+    }
 
 
 function darkTheme() {
