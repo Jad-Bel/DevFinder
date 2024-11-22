@@ -90,24 +90,43 @@ searchButton.addEventListener('click', async () => {
     `; 
 }
 
-darkBtn.addEventListener('click', function () {
-    isDarkMode = true;
-
-    darkBtn.classList.add('hidden');
-    whiteBtn.classList.remove('hidden')
-    whiteBtn.classList.add('block');
+function darkTheme() {
+    darkBtn.addEventListener('click', function () {
+        isDarkMode = true;
     
-    body.classList.remove('bg-gray-100');
-    body.classList.add('bg-gray-700', 'text-white');
-});
+        darkBtn.classList.add('hidden');
+        whiteBtn.classList.remove('hidden')
+        whiteBtn.classList.add('block');
+        
+        body.classList.remove('bg-gray-100');
+        body.classList.add('bg-gray-700', 'text-white');
+    });
 
-whiteBtn.addEventListener('click', function () {
-    isDarkMode = false;
+    const dynamicCard = document.querySelector('.card1');
+    
+    if (dynamicCard) {
+        dynamicCard.classList.remove('bg-white', 'shadow-gray-300');
+        dynamicCard.classList.add('bg-slate-700');
+       }
+}
 
-    whiteBtn.classList.add('hidden');
-    darkBtn.classList.remove('hidden')
-    darkBtn.classList.add('block');
 
-    body.classList.remove('bg-gray-700', 'text-white');
-    body.classList.add('bg-gray-100');
-});
+function whiteBtn() { 
+    whiteBtn.addEventListener('click', function () {
+        isDarkMode = false;
+    
+        whiteBtn.classList.add('hidden');
+        darkBtn.classList.remove('hidden')
+        darkBtn.classList.add('block');
+    
+        body.classList.remove('bg-gray-700', 'text-white');
+        body.classList.add('bg-gray-100');
+    });
+
+    const dynamicCard = document.querySelector('.card1');
+
+    if (dynamicCard) {
+        dynamicCard.classList.remove('bg-gray-800', 'shadow-gray-600');
+        dynamicCard.classList.add('bg-white');
+    }
+}
